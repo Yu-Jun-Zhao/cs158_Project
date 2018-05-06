@@ -1,0 +1,18 @@
+{
+  "name": "video-peer-2-peer-app",
+  "version": "1.0.0",
+  "description": "cs158 project",
+  "main": "index.js",
+  "dependencies": {
+    "simple-peer": "^9.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "p2p"
+  ],
+  "author": "cs158 students",
+  "license": "ISC"
+}
