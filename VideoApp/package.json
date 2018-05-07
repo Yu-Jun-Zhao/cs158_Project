@@ -4,6 +4,7 @@
   "description": "cs158 project",
   "main": "index.js",
   "dependencies": {
+    "getusermedia": "^2.0.1",
     "simple-peer": "^9.1.1"
   },
   "devDependencies": {
