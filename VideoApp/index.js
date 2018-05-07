@@ -1,4 +1,4 @@
-/*
+
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function (stream) {
     var Peer = require('simple-peer');
@@ -39,12 +39,12 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
   })
   .catch(function (error) {
     if (error) {
-       console.log('failed');
+       console.log('failed' + error);
     }
   });
-*/
 
 
+/*
 var getUserMedia = require('getusermedia');
 
 getUserMedia({video: true, audio: false}, function (err, stream) {
@@ -93,3 +93,4 @@ getUserMedia({video: true, audio: false}, function (err, stream) {
     })
   }
 );
+*/

@@ -1,3 +1,4 @@
 /.metadata/
 VideoApp/node_modules/
 VideoApp/npm-debug.log
+VideoApp/package-lock.json
