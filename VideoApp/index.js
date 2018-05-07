@@ -1,3 +1,7 @@
+const signalhub = require('signalhub');
+const hub = signalhub('my-video-app', ['http://localhost:8080']);
+
+
 
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
   .then(function (stream) {
@@ -10,12 +14,19 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     });
 
     peer.on('signal', function(data) {
+      console.log(location.hash + " is here");
+      console.log(data);
       document.getElementById('YourConnectionID').value = JSON.stringify(data);
     })
 
     document.getElementById('connect').addEventListener('click', function(){
       var otherId = JSON.parse(document.getElementById('OtherID').value)
-      peer.signal(otherId)
+      if(otherId.value === ""){
+        document.getElementById('statuslabel').innerHTML = "No Value in OTHER ID";
+      }else{
+        document.getElementById('statuslabel').innerHTML = "Connecting";
+        peer.signal(otherId);
+      }
 
     })
 
@@ -31,6 +42,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
 
     peer.on('stream',function(stream){
       var video = document.createElement('video')
+      console.log(location.hash)
       document.body.appendChild(video)
 
       video.src = window.URL.createObjectURL(stream)

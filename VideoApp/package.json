@@ -11,7 +11,8 @@
     "budo": "^11.2.0"
   },
   "scripts": {
-    "start": "budo index.js:bundle.js"
+    "start": "budo index.js:bundle.js",
+    "signalhub": "signalhub listen -p 8080"
   },
   "keywords": [
     "p2p"
