@@ -8,7 +8,7 @@ function Peer(name, message){
 
 }
 
-var peer = {};
+const peer = {};
 var you = new Peer(); // This is you.
 
 
@@ -16,7 +16,7 @@ var you = new Peer(); // This is you.
 hub.subscribe('update').on('data', function(data){
     if(peer.name === you.name) return;
     if(!peer[data.name]){
-        peer = new Peer(data.name, data.message);
+        peer[data.name]  = new Peer(data.name, data.message);
     }
     document.getElementById('messages').textContent += '    ' + data.message + ' << ' + data.name + '\n';
 
