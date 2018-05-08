@@ -14,20 +14,22 @@ var you = new Peer(); // This is you.
 
 
 hub.subscribe('update').on('data', function(data){
-    if(peer.name === you.name) return;
+    if(data.name === you.name) return;
     if(!peer[data.name]){
         peer[data.name]  = new Peer(data.name, data.message);
     }
-    document.getElementById('messages').textContent += '    ' + data.message + ' << ' + data.name + '\n';
+    document.getElementById('messages').textContent +=  data.name + ' >> ' + data.message + '\n';
 
 });
 
 document.getElementById('connect').addEventListener('click', function(){
     const yourName = document.getElementById('nameID').value;
-    const yourMessage = document.getElementById('yourMessage').value;
+    const yourMessage = "is Connected";
     //you = new Peer(yourName, yourMessage);
     you = new Peer(yourName, yourMessage);
     hub.broadcast('update', you);
+
+    document.getElementById('statuslabel').innerHTML = "You: On";
 });
 
 
