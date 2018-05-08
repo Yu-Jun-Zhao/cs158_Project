@@ -7,21 +7,25 @@
   </head>
 
   <body>
-    <h2>PEER BOOK</h2>
-    <textarea rows = "1" cols = "20" id = "nameID"></textarea><br>
-    <button class = "btn btn-primary" id = "connect">Connect To Peers</button>
-    <label id = "statuslabel">Not Connected</label> <br>
+    <div class = "container text-center">
+        <h2>PEER BOOK</h2>
+        <p>BETA v 0.49</p>
+        <label>Name:</label><br>
+        <textarea rows = "1" cols = "20" id = "nameID"></textarea><br>
+        <button class = "btn btn-primary" id = "connect">Connect To Peers</button><br>
+        <label id = "statuslabel"><small>Not Connected</small></label> <br>
 
-    <label>Enter a message:</label> <br>
-    <textarea id = "yourMessage"></textarea>
-    <label id = "statusText"></label> <br>
+        <label>Enter a message:</label> <br>
+        <textarea id = "yourMessage" rows = "8" cols = "35"></textarea>
+        <label id = "statusText"></label> <br>
 
-    <button id = "send">send</button> <br>
-    <pre id = "messages"></pre>
-
+        <button class = "btn btn-primary" id = "send">send</button> <br>
+        <div class = "container" style = "width:500px">
+            <pre id = "messages"></pre>
+        </div>
+    </div>
     <script src = "bundle.js" charset= "utf-8"> </script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <!--<script src="./Peer.js"></script> -->
   </body>
 
 </html>
