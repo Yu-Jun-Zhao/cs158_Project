@@ -7,16 +7,21 @@
   </head>
 
   <body>
+    <h2>PEER BOOK</h2>
+    <textarea rows = "1" cols = "20" id = "nameID"></textarea><br>
     <button class = "btn btn-primary" id = "connect">Connect To Peers</button>
     <label id = "statuslabel">Not Connected</label> <br>
 
     <label>Enter a message:</label> <br>
-    <textarea id = "yourMessage"></textarea> <br>
+    <textarea id = "yourMessage"></textarea>
+    <label id = "statusText"></label> <br>
+
     <button id = "send">send</button> <br>
     <pre id = "messages"></pre>
 
     <script src = "bundle.js" charset= "utf-8"> </script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <!--<script src="./Peer.js"></script> -->
   </body>
 
 </html>

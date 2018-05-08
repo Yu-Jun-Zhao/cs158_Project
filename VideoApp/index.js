@@ -1,21 +1,51 @@
 const signalhub = require('signalhub');
 const hub = signalhub('my-video-app', ['https://signalhub-jccqtwhdwc.now.sh']);
+//const Peer = require('./Peer.js');
+
+function Peer(name, message){
+    this.name = name || "anonymous";
+    this.message = message || "";
+
+}
+
+var peer = {};
+var you = new Peer(); // This is you.
+
 
 
 hub.subscribe('update').on('data', function(data){
-    console.log(data);
+    if(peer.name === you.name) return;
+    if(!peer[data.name]){
+        peer = new Peer(data.name, data.message);
+    }
+    document.getElementById('messages').textContent += '    ' + data.message + ' << ' + data.name + '\n';
+
 });
 
 document.getElementById('connect').addEventListener('click', function(){
-    hub.broadcast('update', window.location.hash);
+    const yourName = document.getElementById('nameID').value;
+    const yourMessage = document.getElementById('yourMessage').value;
+    //you = new Peer(yourName, yourMessage);
+    you = new Peer(yourName, yourMessage);
+    hub.broadcast('update', you);
 });
 
 
 document.getElementById('send').addEventListener('click', function(){
 
   var yourMessage = document.getElementById('yourMessage').value;
-  hub.broadcast('update', yourMessage);
-  document.getElementById('messages').textContent += 'you ' + '>> ' +  yourMessage + '\n';
+  you.message = yourMessage;
+
+  if(you.message === "") {
+      document.getElementById('statusText').innerHTML = "Insert a Text";
+  }else{
+      document.getElementById('messages').textContent += 'you ' + '>> ' +  yourMessage + '\n';
+      document.getElementById('statusText').innerHTML = "";
+      hub.broadcast('update', you);
+  }
+
+// reset textContent
+  document.getElementById('yourMessage').value = "";
 
 })
 
