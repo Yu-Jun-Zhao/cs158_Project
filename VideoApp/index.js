@@ -10,15 +10,15 @@ function Peer(name, message){
 const peer = {};
 var you = new Peer(); // This is you.
 
-
-
 hub.subscribe('update').on('data', function(data){
-    if(data.name === you.name) return;
+    if(data.name === you.name || data.name === "") return;
     if(!peer[data.name]){
         peer[data.name]  = new Peer(data.name, data.message);
-    }
-    document.getElementById('messages').textContent +=  data.name + ' >> ' + data.message + '\n';
 
+    }
+    if(data.message !== "")
+        document.getElementById('messages').textContent +=  data.name + ' >> ' + data.message + '\n';
+    // if message is empty. ignore
 });
 
 document.getElementById('connect').addEventListener('click', function(){
@@ -50,7 +50,7 @@ document.getElementById('send').addEventListener('click', function(){
 
 })
 
-//setInterval(function(){
-    //document.getElementById('messages').textContent += '    ' +
-    //console.log("");
-//}, 1000);
+setInterval(function(){
+    hub.broadcast('update', new Peer("",""));
+
+}, 1000);
