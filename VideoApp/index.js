@@ -1,3 +1,5 @@
+// Requires the use of signalHub to help transmit data
+// to the other peers that are connected to the server.
 const signalhub = require('signalhub');
 const hub = signalhub('my-video-app', ['https://signalhub-jccqtwhdwc.now.sh']);
 
@@ -15,11 +17,12 @@ hub.subscribe('update').on('data', function(data){
         peer[data.name]  = new Peer(data.name, data.message);
 
     }
-    if(data.message !== "")
+    if(data.message !== "")// retrieves message from the app if empty the statement is ignored
         document.getElementById('messages').textContent +=  data.name + ' >> ' + data.message + '\n';
     // if message is empty. ignore
 });
 
+// Connects to server when clicked on
 document.getElementById('connect').addEventListener('click', function(){
     const yourName = document.getElementById('nameID').value;
     const yourMessage = "is Connected";
@@ -30,7 +33,8 @@ document.getElementById('connect').addEventListener('click', function(){
     document.getElementById('statuslabel').innerHTML = "You: On";
 });
 
-
+// This adds a listener to the send button, thus sends the message if there is one
+// to the server.
 document.getElementById('send').addEventListener('click', function(){
 
   var yourMessage = document.getElementById('yourMessage').value;
