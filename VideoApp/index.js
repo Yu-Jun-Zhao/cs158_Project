@@ -4,7 +4,6 @@ const hub = signalhub('my-video-app', ['https://signalhub-jccqtwhdwc.now.sh']);
 function Peer(name, message){
     this.name = name || "anonymous";
     this.message = message || "";
-
 }
 
 const peer = {};
